@@ -1,0 +1,18 @@
+.wrap {
+  display: inline-block;
+}
+
+.inner {
+  display: inline;
+}
+
+.word {
+  display: inline;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+}

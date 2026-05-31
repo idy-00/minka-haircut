@@ -1,0 +1,21 @@
+.wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  /* Masque circulaire pour fondre les bords */
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%);
+}
+
+.svg {
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+}

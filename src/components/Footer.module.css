@@ -1,0 +1,32 @@
+.footer {
+  border-top: 1px solid var(--rule);
+  padding: 2rem 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.left {
+  font-family: 'Oswald', sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.left em {
+  font-style: normal;
+  color: var(--red);
+}
+
+.right {
+  font-size: .65rem;
+  color: var(--dim);
+  letter-spacing: 1px;
+}
+
+@media (max-width: 500px) {
+  .footer { flex-direction: column; text-align: center; }
+}

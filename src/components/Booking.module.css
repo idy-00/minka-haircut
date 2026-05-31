@@ -1,0 +1,316 @@
+.section {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  min-height: 80vh;
+  border-top: 1px solid var(--rule);
+}
+
+/* ── Left ── */
+.left {
+  padding: 6rem 7%;
+  background: var(--black2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-right: 1px solid var(--rule);
+}
+
+.eyebrow {
+  font-size: .62rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: .95;
+  letter-spacing: -1px;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+.sub {
+  font-size: .82rem;
+  color: #555;
+  font-weight: 300;
+  line-height: 1.9;
+  margin-bottom: 3.5rem;
+  max-width: 280px;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  padding: .7rem 0;
+}
+
+/* Ligne verticale de connexion entre étapes */
+.stepLine {
+  position: absolute;
+  left: 11px;
+  bottom: 100%;
+  width: 2px;
+  height: .7rem;
+  background: #2a2a2a;
+  transition: background .35s;
+}
+.stepLineDone { background: var(--red); }
+
+.stepCircle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #2a2a2a;
+  background: var(--black);
+  color: #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .68rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: border-color .3s, background .3s, color .3s, box-shadow .3s;
+  font-family: 'Oswald', sans-serif;
+}
+
+.stepName {
+  font-size: .7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #2d2d2d;
+  transition: color .3s;
+}
+
+.stepActive .stepCircle {
+  border-color: var(--red);
+  background: rgba(196,30,30,.1);
+  color: var(--red);
+  box-shadow: 0 0 0 3px rgba(196,30,30,.15);
+}
+.stepActive .stepName { color: var(--white); }
+
+.stepDone .stepCircle {
+  border-color: var(--red);
+  background: var(--red);
+  color: var(--white);
+}
+.stepDone .stepName { color: var(--dim); }
+
+/* ── Right ── */
+.right {
+  padding: 6rem 7%;
+  display: flex;
+  align-items: center;
+}
+
+.panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.panelLabel {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--white);
+}
+
+/* Step 0 — service grid */
+.serviceGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .8rem;
+}
+
+.serviceBtn {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: #555;
+  padding: 1rem 1.2rem;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-size: .78rem;
+  font-weight: 300;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s;
+  letter-spacing: .5px;
+}
+.serviceBtn:hover {
+  border-color: #333;
+  color: var(--white);
+}
+.serviceBtnActive {
+  border-color: var(--white) !important;
+  color: var(--white) !important;
+  background: #111 !important;
+}
+
+/* Step 1 — fields */
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.field { display: flex; flex-direction: column; gap: .5rem; }
+
+.fieldLabel {
+  font-size: .6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: .88rem;
+  font-weight: 300;
+  padding: .65rem 0;
+  outline: none;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+  transition: border-color .2s;
+  color-scheme: dark;
+}
+.input::placeholder { color: #2d2d2d; }
+.input:focus { border-bottom-color: #444; }
+
+textarea.input { resize: none; line-height: 1.7; }
+
+/* Step 2 — recap */
+.recap {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.recapRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.recapRow:first-child { border-top: 1px solid var(--rule); }
+
+.recapKey {
+  font-size: .62rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+
+.recapVal {
+  font-size: .88rem;
+  color: var(--white);
+  font-weight: 300;
+}
+
+.hint {
+  font-size: .75rem;
+  color: #444;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* Nav */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: .5rem;
+}
+
+.backBtn {
+  background: transparent;
+  border: none;
+  color: var(--dim);
+  font-family: 'Inter', sans-serif;
+  font-size: .7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color .2s;
+  padding: 0;
+}
+.backBtn:hover { color: var(--white); }
+
+.nextBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  background: var(--white);
+  color: var(--black);
+  border: none;
+  padding: .9rem 1.8rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s, opacity .2s;
+}
+.nextBtn:disabled {
+  opacity: .25;
+  cursor: not-allowed;
+}
+.nextBtn:not(:disabled):hover { background: #e0e0e0; }
+
+.sendBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  background: #075E54;
+  color: var(--white);
+  border: none;
+  padding: .9rem 1.8rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s;
+}
+.sendBtn:hover { background: #064d45; }
+
+.arrow { transition: transform .2s; }
+.nextBtn:hover .arrow,
+.sendBtn:hover .arrow { transform: translateX(4px); }
+
+@media (max-width: 860px) {
+  .section { grid-template-columns: 1fr; }
+  .left { border-right: none; border-bottom: 1px solid var(--rule); padding: 4rem 7%; }
+  .steps { flex-direction: row; gap: 2rem; }
+  .right { padding: 4rem 7%; }
+}
+
+@media (max-width: 500px) {
+  .serviceGrid { grid-template-columns: 1fr; }
+}
