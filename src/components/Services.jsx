@@ -12,31 +12,26 @@ const SERVICES = [
   { name: 'Déplacement',       tag: 'À domicile · Sur demande',  img: '/services/s12.jpg'    },
 ]
 
+const isTouch = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches
+
 export default function Services() {
   const [active, setActive] = useState(null)
   const sectionRef = useRef(null)
 
-  // Scroll reveal
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { el.dataset.visible = 'true'; observer.unobserve(el) } },
-      { threshold: 0.05 }
+      { threshold: 0.04 }
     )
     observer.observe(el)
     return () => observer.disconnect()
   }, [])
 
-  // Détecter touch pour désactiver hover fantôme
-  const isTouch = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches
-
   function handleEnter(i) { if (!isTouch) setActive(i) }
-  function handleLeave()   { if (!isTouch) setActive(null) }
-  function handleTap(i)    {
-    if (!isTouch) return
-    setActive(prev => prev === i ? null : i)
-  }
+  function handleLeave()  { if (!isTouch) setActive(null) }
+  function handleTap(i)   { if (isTouch) setActive(p => p === i ? null : i) }
 
   return (
     <section ref={sectionRef} className={styles.section} id="services">
@@ -51,7 +46,7 @@ export default function Services() {
 
       <div className={styles.body}>
 
-        {/* ── Liste ── */}
+        {/* ── Liste éditoriale (desktop) + cartes (mobile) ── */}
         <ul className={styles.list}>
           {SERVICES.map((s, i) => (
             <li
@@ -62,6 +57,11 @@ export default function Services() {
               onMouseLeave={handleLeave}
               onTouchEnd={() => handleTap(i)}
             >
+              {/* Image — visible sur mobile comme fond de carte */}
+              <img src={s.img} alt={s.name} className={styles.cardImg} loading="lazy" />
+              <div className={styles.cardOverlay} />
+
+              {/* Contenu */}
               <span className={styles.sweep} aria-hidden="true" />
               <span className={styles.num}>0{i + 1}</span>
               <span className={styles.name}>{s.name}</span>
@@ -71,7 +71,7 @@ export default function Services() {
           ))}
         </ul>
 
-        {/* ── Preview image (desktop uniquement) ── */}
+        {/* ── Preview image sticky (desktop seulement) ── */}
         <div className={styles.preview} aria-hidden="true">
           {SERVICES.map((s, i) => (
             <img
