@@ -1,12 +1,10 @@
 .section {
-  padding: 8rem 7%;
+  padding: 6rem 7%;
   border-top: 1px solid var(--rule);
 }
 
 /* ── Header ── */
-.header {
-  margin-bottom: 4rem;
-}
+.header { margin-bottom: 3.5rem; }
 
 .eyebrow {
   font-size: .6rem;
@@ -14,7 +12,7 @@
   text-transform: uppercase;
   color: var(--dim);
   display: block;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .titleRow {
@@ -26,17 +24,14 @@
 
 .title {
   font-family: 'Oswald', sans-serif;
-  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-size: clamp(2.2rem, 5vw, 4rem);
   font-weight: 700;
   text-transform: uppercase;
   line-height: .9;
   letter-spacing: -1.5px;
   color: var(--white);
 }
-.title em {
-  font-style: normal;
-  color: var(--dim);
-}
+.title em { font-style: normal; color: var(--dim); }
 
 .cta {
   display: inline-block;
@@ -52,14 +47,14 @@
   transition: color .2s, border-color .2s;
   white-space: nowrap;
   flex-shrink: 0;
-  margin-bottom: .4rem;
+  margin-bottom: .3rem;
 }
-.cta:hover { color: var(--white); border-color: #555; }
+@media (hover: hover) { .cta:hover { color: var(--white); border-color: #555; } }
 
-/* ── Layout ── */
+/* ── Layout desktop ── */
 .body {
   display: grid;
-  grid-template-columns: 1fr 360px;
+  grid-template-columns: 1fr 340px;
   gap: 3rem;
   align-items: start;
 }
@@ -73,41 +68,37 @@
 .row {
   position: relative;
   display: grid;
-  grid-template-columns: 56px 1fr 1fr 32px;
+  grid-template-columns: 48px 1fr 1fr 28px;
   align-items: center;
-  padding: 1.6rem 0;
+  padding: 1.4rem 0;
   border-bottom: 1px solid var(--rule);
-  cursor: default;
   overflow: hidden;
-
-  /* Entrée en cascade au scroll */
+  cursor: pointer;
+  /* Entrée en cascade */
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(16px);
   transition:
-    opacity .55s cubic-bezier(.4,0,.2,1),
-    transform .55s cubic-bezier(.4,0,.2,1),
-    border-color .25s;
-  transition-delay: calc(var(--i) * 0.07s);
+    opacity .5s cubic-bezier(.4,0,.2,1),
+    transform .5s cubic-bezier(.4,0,.2,1),
+    border-color .2s;
+  transition-delay: calc(var(--i) * 0.06s);
+  /* Touch : zone de tap généreuse */
+  -webkit-tap-highlight-color: transparent;
 }
+[data-visible="true"] .row { opacity: 1; transform: translateY(0); }
 
-/* Visible quand la section est dans le viewport */
-[data-visible="true"] .row {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Sweep rouge qui glisse de gauche à droite */
+/* Sweep fond */
 .sweep {
   position: absolute;
   inset: 0;
   background: rgba(196,30,30,.06);
   transform: translateX(-101%);
-  transition: transform .4s cubic-bezier(.4,0,.2,1);
+  transition: transform .38s cubic-bezier(.4,0,.2,1);
   pointer-events: none;
 }
 .rowActive .sweep { transform: translateX(0); }
 
-/* Ligne rouge gauche */
+/* Barre rouge gauche */
 .row::before {
   content: '';
   position: absolute;
@@ -116,60 +107,54 @@
   background: var(--red);
   transform: scaleY(0);
   transform-origin: bottom;
-  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
 }
 .rowActive::before { transform: scaleY(1); }
 
 .num {
   font-family: 'Oswald', sans-serif;
-  font-size: .62rem;
+  font-size: .6rem;
   color: #2d2d2d;
   letter-spacing: 2px;
   transition: color .25s;
-  padding-left: .5rem;
+  padding-left: .4rem;
 }
 .rowActive .num { color: var(--red); }
 
 .name {
   font-family: 'Oswald', sans-serif;
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 1.4rem);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: -.5px;
-  color: #666;
+  letter-spacing: -.3px;
+  color: #555;
   transition: color .25s, transform .25s;
 }
-.rowActive .name {
-  color: var(--white);
-  transform: translateX(8px);
-}
+.rowActive .name { color: var(--white); transform: translateX(6px); }
 
 .tag {
-  font-size: .62rem;
-  letter-spacing: 2.5px;
+  font-size: .6rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: #2d2d2d;
+  color: #252525;
   transition: color .25s;
 }
 .rowActive .tag { color: #555; }
 
 .arrow {
-  font-size: .9rem;
-  color: #2a2a2a;
+  font-size: .85rem;
+  color: #222;
   transition: color .25s, transform .3s;
   text-align: right;
 }
-.rowActive .arrow {
-  color: var(--red);
-  transform: translateX(4px);
-}
+.rowActive .arrow { color: var(--red); transform: translateX(4px); }
 
-/* ── Preview ── */
+/* ── Preview image desktop ── */
 .preview {
   position: sticky;
-  top: 100px;
-  height: 420px;
-  background: #0d0d0d;
+  top: 90px;
+  height: 400px;
+  background: #0a0a0a;
   border: 1px solid var(--rule);
   overflow: hidden;
 }
@@ -181,15 +166,12 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transform: scale(1.06);
-  filter: brightness(.55) saturate(.7);
+  transform: scale(1.05);
+  filter: brightness(.5) saturate(.7);
   transition: opacity .4s ease, transform .6s ease;
   pointer-events: none;
 }
-.previewImgVisible {
-  opacity: 1;
-  transform: scale(1);
-}
+.previewImgVisible { opacity: 1; transform: scale(1); }
 
 .previewIdle {
   position: absolute;
@@ -197,26 +179,70 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  pointer-events: none;
+  transition: opacity .3s;
 }
+.previewIdleHidden { opacity: 0; }
+
 .previewMono {
   font-family: 'Oswald', sans-serif;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 8px;
-  color: #1c1c1c;
+  color: #1a1a1a;
   text-transform: uppercase;
   user-select: none;
 }
 
-/* ── Responsive ── */
+/* ── Mobile : grille de cartes visuelles ── */
 @media (max-width: 900px) {
-  .body { grid-template-columns: 1fr; }
+  .body { grid-template-columns: 1fr; gap: 0; }
   .preview { display: none; }
-  .row { grid-template-columns: 44px 1fr 28px; }
+
+  /* Sur mobile on cache la liste éditoriale et on montre des cartes */
+  .list { border-top: none; }
+  .row {
+    grid-template-columns: 36px 1fr 20px;
+    padding: 1.2rem 0;
+  }
   .tag { display: none; }
 }
 
 @media (max-width: 500px) {
-  .row { grid-template-columns: 36px 1fr 24px; }
+  /* Cartes 2 colonnes sur petit mobile */
+  .list { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; border: none; }
+  .row {
+    grid-template-columns: 1fr;
+    grid-template-rows: 140px 1fr;
+    padding: 0;
+    border: none;
+    background: #0d0d0d;
+    overflow: hidden;
+    opacity: 0;
+    transform: none;
+  }
+  [data-visible="true"] .row { opacity: 1; }
+  .sweep { display: none; }
+  .row::before { width: 100%; height: 2px; top: 0; bottom: auto; transform: scaleX(0) !important; transform-origin: left; }
+  .rowActive::before { transform: scaleX(1) !important; }
+
+  .num {
+    display: none;
+  }
+  .name {
+    font-size: .75rem;
+    letter-spacing: .5px;
+    padding: .8rem .8rem .2rem;
+    transform: none !important;
+    color: #888;
+  }
+  .rowActive .name { color: var(--white); transform: none !important; }
+  .arrow { display: none; }
+
+  /* L'image de preview devient le fond de chaque carte sur mobile */
+  .row::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
 }

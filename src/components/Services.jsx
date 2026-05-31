@@ -2,35 +2,41 @@ import { useState, useRef, useEffect } from 'react'
 import styles from './Services.module.css'
 
 const SERVICES = [
-  { name: 'Coupes Tendance',   tag: 'Homme · Femme · Enfant',    img: '/services/s1.jpg'     },
-  { name: 'Dégradés & Fades',  tag: 'Skin Fade · Mid · High',    img: '/services/s6.jpg'     },
-  { name: 'Barbe & Rasage',    tag: 'Traditionnel · Précision',   img: '/services/s5.jpg'     },
-  { name: 'Soins Capillaires', tag: 'Traitement · Hydratation',   img: '/services/s8.jpg'     },
-  { name: 'Coloration',        tag: 'Tendance · Sur mesure',      img: '/services/salon2.jpg' },
-  { name: 'Locks',             tag: 'Pose & Entretien',           img: '/services/locks1.jpg' },
-  { name: 'Coiffures Enfants', tag: 'Dès 3 ans',                  img: '/services/s11.jpg'    },
-  { name: 'Déplacement',       tag: 'À domicile · Sur demande',   img: '/services/s12.jpg'    },
+  { name: 'Coupes Tendance',   tag: 'Homme · Femme · Enfant',   img: '/services/s1.jpg'     },
+  { name: 'Dégradés & Fades',  tag: 'Skin Fade · Mid · High',   img: '/services/s6.jpg'     },
+  { name: 'Barbe & Rasage',    tag: 'Traditionnel · Précision',  img: '/services/s5.jpg'     },
+  { name: 'Soins Capillaires', tag: 'Traitement · Hydratation',  img: '/services/s8.jpg'     },
+  { name: 'Coloration',        tag: 'Tendance · Sur mesure',     img: '/services/salon2.jpg' },
+  { name: 'Locks',             tag: 'Pose & Entretien',          img: '/services/locks1.jpg' },
+  { name: 'Coiffures Enfants', tag: 'Dès 3 ans',                 img: '/services/s11.jpg'    },
+  { name: 'Déplacement',       tag: 'À domicile · Sur demande',  img: '/services/s12.jpg'    },
 ]
 
 export default function Services() {
-  const [hovered, setHovered] = useState(null)
+  const [active, setActive] = useState(null)
   const sectionRef = useRef(null)
 
+  // Scroll reveal
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.dataset.visible = 'true'
-          observer.unobserve(el)
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) { el.dataset.visible = 'true'; observer.unobserve(el) } },
       { threshold: 0.05 }
     )
     observer.observe(el)
     return () => observer.disconnect()
   }, [])
+
+  // Détecter touch pour désactiver hover fantôme
+  const isTouch = typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches
+
+  function handleEnter(i) { if (!isTouch) setActive(i) }
+  function handleLeave()   { if (!isTouch) setActive(null) }
+  function handleTap(i)    {
+    if (!isTouch) return
+    setActive(prev => prev === i ? null : i)
+  }
 
   return (
     <section ref={sectionRef} className={styles.section} id="services">
@@ -45,19 +51,18 @@ export default function Services() {
 
       <div className={styles.body}>
 
-        {/* ── Liste éditoriale ── */}
+        {/* ── Liste ── */}
         <ul className={styles.list}>
           {SERVICES.map((s, i) => (
             <li
               key={i}
-              className={`${styles.row} ${hovered === i ? styles.rowActive : ''}`}
+              className={`${styles.row} ${active === i ? styles.rowActive : ''}`}
               style={{ '--i': i }}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
+              onMouseEnter={() => handleEnter(i)}
+              onMouseLeave={handleLeave}
+              onTouchEnd={() => handleTap(i)}
             >
-              {/* Sweep background */}
               <span className={styles.sweep} aria-hidden="true" />
-
               <span className={styles.num}>0{i + 1}</span>
               <span className={styles.name}>{s.name}</span>
               <span className={styles.tag}>{s.tag}</span>
@@ -66,18 +71,18 @@ export default function Services() {
           ))}
         </ul>
 
-        {/* ── Preview image panel ── */}
+        {/* ── Preview image (desktop uniquement) ── */}
         <div className={styles.preview} aria-hidden="true">
           {SERVICES.map((s, i) => (
             <img
               key={i}
               src={s.img}
               alt=""
-              className={`${styles.previewImg} ${hovered === i ? styles.previewImgVisible : ''}`}
+              className={`${styles.previewImg} ${active === i ? styles.previewImgVisible : ''}`}
               loading="lazy"
             />
           ))}
-          <div className={styles.previewIdle}>
+          <div className={`${styles.previewIdle} ${active !== null ? styles.previewIdleHidden : ''}`}>
             <span className={styles.previewMono}>MHC.</span>
           </div>
         </div>

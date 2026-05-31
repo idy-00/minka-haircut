@@ -101,8 +101,6 @@
   align-self: flex-start;
   transition: background .25s, gap .2s;
 }
-.btn:hover { background: #a01818; gap: 1.6rem; }
-
 .btnArrow {
   display: inline-block;
   width: 28px;
@@ -110,7 +108,10 @@
   background: rgba(255,255,255,.5);
   transition: width .25s;
 }
-.btn:hover .btnArrow { width: 40px; }
+@media (hover: hover) {
+  .btn:hover { background: #a01818; gap: 1.6rem; }
+  .btn:hover .btnArrow { width: 40px; }
+}
 
 @media (max-width: 860px) {
   .inner { grid-template-columns: 1fr; gap: 3rem; }

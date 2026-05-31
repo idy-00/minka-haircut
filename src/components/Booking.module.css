@@ -305,12 +305,20 @@ textarea.input { resize: none; line-height: 1.7; }
 .sendBtn:hover .arrow { transform: translateX(4px); }
 
 @media (max-width: 860px) {
-  .section { grid-template-columns: 1fr; }
-  .left { border-right: none; border-bottom: 1px solid var(--rule); padding: 4rem 7%; }
-  .steps { flex-direction: row; gap: 2rem; }
-  .right { padding: 4rem 7%; }
+  .section { grid-template-columns: 1fr; min-height: auto; }
+  .left { border-right: none; border-bottom: 1px solid var(--rule); padding: 3rem 7% 2.5rem; }
+  .sub { display: none; }
+  .steps { flex-direction: row; gap: 1.5rem; flex-wrap: wrap; }
+  .stepLine { display: none; }
+  .right { padding: 3rem 7%; }
 }
 
 @media (max-width: 500px) {
-  .serviceGrid { grid-template-columns: 1fr; }
+  .serviceGrid { grid-template-columns: 1fr; gap: .6rem; }
+  .serviceBtn { padding: 1.1rem 1rem; font-size: .82rem; }
+  /* Inputs grands pour les doigts */
+  .input { font-size: 1rem; padding: .9rem 0; }
+  .nextBtn, .sendBtn { width: 100%; justify-content: center; padding: 1.1rem; }
+  .backBtn { font-size: .72rem; }
+  .nav { flex-wrap: wrap; gap: 1rem; }
 }

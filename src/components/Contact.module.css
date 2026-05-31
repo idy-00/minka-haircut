@@ -125,9 +125,16 @@
 .time { color: #666; }
 
 @media (max-width: 900px) {
+  .section { padding: 5rem 7%; }
   .grid { grid-template-columns: 1fr 1fr; }
   .col  { padding-right: 0; }
 }
 @media (max-width: 500px) {
+  .section { padding: 4rem 7%; }
   .grid { grid-template-columns: 1fr; }
+  .top { margin-bottom: 3rem; }
+  /* Liens téléphone cliquables facilement */
+  .bigLink { font-size: 1.1rem; padding: .3rem 0; }
+  .socialItem { padding: .75rem 0; font-size: .88rem; }
+  .hour { padding: .75rem 0; }
 }

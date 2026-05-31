@@ -21,6 +21,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Éviter le flash bleu au tap sur mobile */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Taille minimale des zones de tap (accessibilité mobile) */
+button, a {
+  min-height: 44px;
+  min-width: 44px;
+}
+
 #root { min-height: 100vh; }
 
 /* ── Scroll reveal — état initial ── */

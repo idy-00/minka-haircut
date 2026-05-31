@@ -254,6 +254,15 @@
   .title { letter-spacing: -1.5px; }
   .scroll { display: none; }
   .pole1  { display: none; }
+  .content { padding-bottom: 3.5rem; }
+  .actions { gap: 1.2rem; }
+  .btnPrimary { padding: .9rem 1.8rem; font-size: .76rem; }
   .stats  { grid-template-columns: 1fr 1fr; }
+  .stat   { padding: 1.4rem 5%; }
   .stat:nth-child(3) { grid-column: span 2; border-right: none; }
+}
+
+@media (max-width: 400px) {
+  .stats { grid-template-columns: 1fr; }
+  .stat  { border-right: none !important; grid-column: auto !important; }
 }
