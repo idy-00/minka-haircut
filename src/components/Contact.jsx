@@ -1,5 +1,6 @@
 import styles from './Contact.module.css'
 import useScrollReveal from '../hooks/useScrollReveal'
+import { FaInstagram, FaTiktok, FaWhatsapp, FaSnapchat } from 'react-icons/fa6'
 
 export default function Contact() {
   const topRef  = useScrollReveal({ threshold: 0.15 })
@@ -43,17 +44,27 @@ export default function Contact() {
 
         <div ref={col3Ref} className={`${styles.col} reveal stagger-3`}>
           <span className={styles.colLabel}>Réseaux</span>
-          <div className={styles.socialList}>
-            {[
-              { name: 'Instagram', href: 'https://www.instagram.com/minkahaircut/' },
-              { name: 'TikTok',    href: 'https://www.tiktok.com/@minkahaircut' },
-              { name: 'WhatsApp',  href: 'https://wa.me/221785396996' },
-              { name: 'Snapchat',  href: '#' },
-            ].map((s, i) => (
-              <a key={i} href={s.href} target="_blank" rel="noreferrer" className={styles.socialItem}>
-                {s.name} <span className={styles.ext}>↗</span>
-              </a>
-            ))}
+          <div className={styles.socialGrid}>
+            <a href="https://www.instagram.com/minkahaircut/" target="_blank" rel="noreferrer" className={`${styles.socialCard} ${styles.socialIg}`}>
+              <FaInstagram size={28} color="#E1306C" />
+              <span className={styles.socialName}>Instagram</span>
+              <span className={styles.socialHandle}>@minkahaircut</span>
+            </a>
+            <a href="https://www.tiktok.com/@minkahaircut" target="_blank" rel="noreferrer" className={`${styles.socialCard} ${styles.socialTt}`}>
+              <FaTiktok size={28} color="#ffffff" />
+              <span className={styles.socialName}>TikTok</span>
+              <span className={styles.socialHandle}>@minkahaircut</span>
+            </a>
+            <a href="https://wa.me/221785396996" target="_blank" rel="noreferrer" className={`${styles.socialCard} ${styles.socialWa}`}>
+              <FaWhatsapp size={28} color="#25D366" />
+              <span className={styles.socialName}>WhatsApp</span>
+              <span className={styles.socialHandle}>+221 78 539 69 96</span>
+            </a>
+            <a href="#" target="_blank" rel="noreferrer" className={`${styles.socialCard} ${styles.socialSn}`}>
+              <FaSnapchat size={28} color="#FFFC00" />
+              <span className={styles.socialName}>Snapchat</span>
+              <span className={styles.socialHandle}>minkahaircut</span>
+            </a>
           </div>
         </div>
 

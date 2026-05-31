@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .left {
@@ -27,6 +28,33 @@
   letter-spacing: 1px;
 }
 
+.socials {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--rule);
+  background: transparent;
+  transition: border-color .2s, background .2s, transform .2s;
+  min-height: unset;
+  min-width: unset;
+}
+@media (hover: hover) {
+  .socialLink:hover {
+    background: #111;
+    border-color: #333;
+    transform: translateY(-2px);
+  }
+}
+
 @media (max-width: 500px) {
   .footer { flex-direction: column; text-align: center; }
+  .socials { order: -1; }
 }

@@ -8,7 +8,7 @@ const SERVICES = [
   { name: 'Soins Capillaires', tag: 'Traitement · Hydratation',  img: '/services/s8.jpg'     },
   { name: 'Coloration',        tag: 'Tendance · Sur mesure',     img: '/services/salon2.jpg' },
   { name: 'Locks',             tag: 'Pose & Entretien',          img: '/services/locks1.jpg' },
-  { name: 'Coiffures Enfants', tag: 'Dès 3 ans',                 img: '/services/s11.jpg'    },
+  { name: 'Coiffures Enfants', tag: 'Dès 3 ans',                 img: '/services/child_haircut.jpg' },
   { name: 'Déplacement',       tag: 'À domicile · Sur demande',  img: '/services/s12.jpg'    },
 ]
 
